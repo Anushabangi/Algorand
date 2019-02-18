@@ -1,0 +1,13 @@
+Structure of RSA Public key
+	consists of two components:
+		n: the RSA modulus, a positive integer, product of u distinct odd primes
+		e: the RSA public exponent, a positive integer, between 3 and n-1 satisfying GCD(e, lambda(n)) = 1.
+
+
+Structure of RSA Private key
+	consist of two components:
+		n: the RSA modulus, same as the first component in public key
+		d: the RSA private exponent, a positive integer, which satisfying e*d == 1 (mod lambda(n))
+
+
+Therefore, the proof = (input)^d mod n, then by knowing proof and public key, we can verify that (input ~ proof^e mod n).	
