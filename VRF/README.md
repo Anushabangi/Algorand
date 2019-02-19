@@ -4,7 +4,7 @@ VRF is a pseudo-random function that provides publicly verifiable proofs of its 
 
 ## Background
 
-Project website at University of Boston https://www.cs.bu.edu/~goldbe/projects/vrf.
+Project website at Boston University https://www.cs.bu.edu/~goldbe/projects/vrf.
 
 ## Our goal
 
