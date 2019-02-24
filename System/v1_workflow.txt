@@ -1,0 +1,13 @@
+testq - a daemon for Algorand protocol
+	sortition - return the role based on the input
+	verify - verify the signature of proposed block
+	BA - simplified BA* protocol with only one round
+		reduction - agree on one option
+		countvote - count votes and return the result
+	nextround - reset everything and return seed for next round
+
+ExpoDB - distributed database system
+	exchangekey - exchange useful information between nodes
+	pre-prepare - the leader broadcast the proposed block (hash) (new event)
+	prepare - each node run BA* and communicate  (based on PBFT prepare)
+	commit - execute and commit the proposed block
