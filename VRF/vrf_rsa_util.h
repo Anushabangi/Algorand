@@ -7,6 +7,21 @@
 #include <openssl/evp.h>
 #include <openssl/rsa.h>
 
+
+/*!
+ * generate RSA private key
+ *
+ * \param[in]	 key_length		Length of key. Can't be smaller than 1024
+ * \param[out] pri_key      Generated private key.
+ */
+RSA* generate_pri_key(int key_length)
+
+/*!
+ * generate corresponding public key according to private key
+ * \param[in]  pri_key 			The private key
+ */
+RSA *privkey_to_pubkey(RSA *pri_key)
+
 /*!
  * Get size of Full Domain Hash result.
  */

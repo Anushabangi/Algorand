@@ -7,6 +7,37 @@
 #include <openssl/evp.h>
 #include <openssl/rsa.h>
 
+
+/*!
+ * generate RSA private key
+ */
+RSA* generate_pri_key(int key_length) {
+	int pub_exp = 3;
+	if (key_length < 1024) {
+		// too short to be secured.
+		return NULL;
+	}
+
+	return RSA_generate_key(key_length, pub_exp, NULL, NULL);
+}
+
+/*!
+ * generate corresponding public key according to private key
+ */
+RSA *privkey_to_pubkey(RSA *pri_key) {
+	RSA *pub_key = RSA_new();
+	if (!pub_key || !pri_key) {
+		// failed to create RSA instance
+		// or private key is invalid
+		return NULL;
+	}
+
+	pub_key->n = BN_dup(pri_key->n);
+	pub_key->e = BN_dup(pri_key->e);
+
+	return pub_key;
+}
+
 /*!
  * Get size of Full Domain Hash result.
  */
@@ -41,6 +72,9 @@ size_t openssl_fdh_sign(const uint8_t *data, size_t data_len,
 	// preform raw RSA signature
 
 	int r = RSA_private_encrypt(sizeof(mask), mask, sign, key, RSA_NO_PADDING);
+
+	print_hex(data, data_len);
+
 	if (r < 0) {
 		return 0;
 	}
