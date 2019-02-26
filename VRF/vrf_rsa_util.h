@@ -12,21 +12,21 @@
 /*!
  * generate RSA private key
  *
- * \param[in]	 key_length		Length of key. Can't be smaller than 1024
+ * \param[in]	 key_length   Length of key. Can't be smaller than 1024
  * \param[out] pri_key      Generated private key.
  */
 RSA* generate_pri_key(int key_length)
 
 /*!
  * generate corresponding public key according to private key
- * \param[in]  pri_key 			The private key
+ * \param[in]  pri_key      The private key
  */
 RSA *privkey_to_pubkey(RSA *pri_key)
 
 /* !
  * convert private key in RSA to public key in C string
- * \param[in]	 pri_key 			The private key (RSA*)
- * \param[out] 							The public key (char*)
+ * \param[in]	 pri_key      The private key (RSA*)
+ * \param[out]              The public key (char*)
  */
 char* key_to_string(RSA* pri_key)
 
@@ -63,6 +63,6 @@ size_t vrf_rsa_verify(const uint8_t *data, size_t data_len,
  *
  * \return True if the signature was validated successfully.
  */
-bool openssl_fdh_verify(const uint8_t *data, size_t data_len,
+bool vrf_rsa_verify(const uint8_t *data, size_t data_len,
 			const uint8_t *sign, size_t sign_len,
 			RSA *key, const EVP_MD *hash);
