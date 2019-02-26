@@ -17,7 +17,7 @@ s1IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end
 s2IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' s2)
 s3IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' s3)
 c4IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' c4)
-echo "$devIP\n$s1IP\n$s2IP\n$s3IP\n$c4IP" > "ExpoDB-BC/ifconfig.txt"
+echo -e "$devIP\n$s1IP\n$s2IP\n$s3IP\n$c4IP" > "ExpoDB-BC/ifconfig.txt"
 
 gnome-terminal -- bash -c "echo dev;
   cd $DIR;
