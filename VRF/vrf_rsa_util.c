@@ -8,13 +8,35 @@
 #include <openssl/rsa.h>
 
 
+/* !
+ * convert private key in RSA to public key in C string
+ */
+char* key_to_string(RSA* pri_key) {
+	if (!pri_key) {
+		return NULL;
+	}
+	// convert RSA to BIO
+	BIO *pub = BIO_new(BIO_s_mem());
+	PEM_write_bio_RSAPublicKey(pub, pri_key);
+
+	size_t pub_len = BIO_pending(pub);
+
+	char *pub_key_char = malloc(pub_len + 1);
+	// read BIO into Char[]
+	BIO_read(pub, pub_key_char, pub_len);
+	// append stop sign
+	pub_key_char[pub_len] = '\0';
+
+	return *pub_key_char;
+}
+
 /*!
  * generate RSA private key
  */
 RSA* generate_pri_key(int key_length) {
 	int pub_exp = 3;
 	if (key_length < 1024) {
-		// too short to be secured.
+		// too short to be secure
 		return NULL;
 	}
 

@@ -6,6 +6,7 @@
 
 #include <openssl/evp.h>
 #include <openssl/rsa.h>
+#include <openssl/pem.h>
 
 
 /*!
@@ -21,6 +22,13 @@ RSA* generate_pri_key(int key_length)
  * \param[in]  pri_key 			The private key
  */
 RSA *privkey_to_pubkey(RSA *pri_key)
+
+/* !
+ * convert private key in RSA to public key in C string
+ * \param[in]	 pri_key 			The private key (RSA*)
+ * \param[out] 							The public key (char*)
+ */
+char* key_to_string(RSA* pri_key)
 
 /*!
  * Get size of Full Domain Hash result.
