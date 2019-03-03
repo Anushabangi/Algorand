@@ -21,7 +21,7 @@ char* key_to_string(RSA* pri_key) {
 
 	size_t pub_len = BIO_pending(pub);
 
-	char *pub_key_char = malloc(pub_len + 1);
+	char *pub_key_char = (char *)malloc(pub_len + 1);
 	// read BIO into Char[]
 	BIO_read(pub, pub_key_char, pub_len);
 	// append stop sign
@@ -170,7 +170,6 @@ bool vrf_rsa_verify(const uint8_t *data, size_t data_len,
 	}
 
 	// compare the result
-
 	return sizeof(mask) == sizeof(decrypted) &&
 	       memcmp(mask, decrypted, sizeof(mask)) == 0;
 }

@@ -105,9 +105,11 @@ int main(int argc, char *argv[]) {
 		error("Error extracting public RSA parameters from the key.");
 		return 1;
 	}
+
 	// 2. verify using input & proof
 	bool valid = vrf_rsa_verify(input, input_len, proof, proof_len, pub_key, hash);
 	RSA_free(pub_key);
 	printf("# verification: %s\n", valid ? "succeeded!" : "failed!");
 
+	return 0;
 }
