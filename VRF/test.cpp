@@ -100,6 +100,17 @@ int main(int argc, char *argv[]) {
 	// ----------------- verifier section ----------------------
 	// 1. get public key from private key
 	RSA *pub_key = privkey_to_pubkey(pri_key);
+
+	// test convert pub key to string, and output
+	char* key_str = key_to_string(pub_key);
+	printf("%s\n", key_str);
+
+	RSA* temp = string_to_key(key_str, 1);
+	printf("Convert key to string, and back, to check the functions...\n");
+	char* key_str2 = key_to_string(temp);
+	printf("%s\n", key_str2);
+
+
 	RSA_free(pri_key);
 	if (!pub_key) {
 		error("Error extracting public RSA parameters from the key.");
