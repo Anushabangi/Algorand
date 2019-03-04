@@ -1,8 +1,10 @@
 testq - a daemon for Algorand protocol
-	sortition - return the role based on the input
+	init - init the status of this node
+	getkey - store the public key of each node
+	sortition - return the j and the signature based on the input
 	verify - verify the signature of proposed block
 	BA - simplified BA* protocol with only one round
-		reduction - agree on one option
+		//reduction - agree on one option
 		countvote - count votes and return the result
 	nextround - reset everything and return seed for next round
 
