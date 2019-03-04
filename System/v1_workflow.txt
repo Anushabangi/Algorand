@@ -6,10 +6,10 @@ testq - a daemon for Algorand protocol
 	BA - simplified BA* protocol with only one round
 		//reduction - agree on one option
 		countvote - count votes and return the result
-	nextround - reset everything and return seed for next round
+	reset - reset counts and return seed for next round
 
 ExpoDB - distributed database system
 	exchangekey - exchange useful information between nodes
-	pre-prepare - the leader broadcast the proposed block (hash) (new event)
-	prepare - each node run BA* and communicate  (based on PBFT prepare)
-	commit - execute and commit the proposed block
+	pre-prepare - one node broadcast the txn batch (proposed block)
+	prepare - each node run BA* and communicate then agree on the block
+	commit - commit and execute the proposed block. At the same time, it will change the property of everyone randomly
