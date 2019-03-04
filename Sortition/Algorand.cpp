@@ -1,86 +1,111 @@
 #include "Algorand.h"
 #include "picosha2.h"
+#include "vrf_rsa_util.h"
+#include <math.h>
 
-#include <string>
-#include <ctime>
-#include <iostream>
+int algorand_sum(int start, int end, int k, int w, int p) {
+    int sum = 0;
+    for(int i = start; i <= end; i++) {
+        sum += B(i, w, p);
+    }
+    return sum;
+}
 
-using namespace std;
-class Algorand
-{
-public:
-    
-    struct vrfStruct {
-        string hash;
-        string proof;
-    };
-    struct sortitionRet {
-        string hash;
-        string proof;
-        int j;
-    }
-    string *publickeys;
-    //unordered_map<string,uint64_t> wallet; // context ctx - it should be a kind of hash map
-    string round; //round number (the hash of a block)
-    uint64_t step; //step number
-    uint64_t user_count; //user number
-    //int *role; //the role of each member
-    
-    
-    string m_publickey;
-    string m_privatekey;
-    uint64_t m_wallet;
-    //block m_block[hash]; in flight block
-    //unordered_map<string, vector<message>> old_message; old messages[round,step]
-    
-    uint64_t state; //0.init 1.waiting 2.voting 3.commit
-    
-    //sortition();
-    //verify();
-    //vote();
-    //countvotes();
-    //BA();
-    unit64_t sortition(string sk, string seed, uint64_t threshold, int role, int w, int W) {
-        struct vrfStruct vrfRet = VRF(sk, seed, role);
-        string hash = vrfRet.hash;
-        string proof = vrfRet.proof;
-        float p = threshold / W;
-        int j = 0;
-        int hashlen = hash.length();
-        while(hash / 2^hashlen < sum(0, j, B(k,w,p)) || hash / 2^hashlen >= sum(0, j+1, B(k, w, p))) {
-            j++;
-        }
-        struct sortitionRet results;
-        results.hash = hash;
-        results.proof = proof;
-        results.j = j;
-        return results;
-    }
-    
-    int sum(int start, int end, int k, int w, int p) {
-        int sum = 0;
-        for(int i = start; i <= end; i++) {
-            sum += B(i, w, p);
-        }
-        return sum;
-    }
-    int nCr(int n, int r)
-    {
-        if (r > n / 2)
+int nCr(int n, int r) {
+    if (r > n / 2)
         r = n - r;
-        
-        int answer = 1;
-        for (int i = 1; i <= r; i++) {
-            answer *= (n - r + i);
-            answer /= i;
-        }
-        
-        return answer;
+    
+    int answer = 1;
+    for (int i = 1; i <= r; i++) {
+        answer *= (n - r + i);
+        answer /= i;
     }
-    int B(int k, int n, int p) {
-        return nCr(n, k) * pow(p, k) * pow(1 - p, n - k);
+    
+    return answer;
+}
+
+int binary_distribution(int k, int n, int p) {
+    return nCr(n, k) * pow(p, k) * pow(1 - p, n - k);
+}
+
+RSA* Algorand::init() {
+    //TODO: generate keys handle error?
+    this->user_count = 4;
+    this->m_wallet = 100;
+    this->round = 0;
+    this->step = 0;
+    this->seed = "0";
+    this->state = 0;
+    this->m_privatekey = generate_pri_key(2048);
+    this->m_publickey = privkey_to_pubkey(this->m_privatekey);
+    return this->m_publickey;
+}
+
+sortitionRet Algorand::sortition(string sk, uint64_t threshold, int role, int w, int W) {
+    
+    vrfStruct vrfRet = VRF(sk, this->seed, role);
+    uint8_t hash = vrfRet.hash;
+    uint8_t proof = vrfRet.proof;
+    float p = threshold / W;
+    int j = 0;
+    int hashlen = hash.length();    //TODO
+    
+    //TODO: shorter hash and hashlen, need discussion on Sunday
+    while( (hash / pow(2.0,hashlen)) < algorand_sum(0, j, binary_distribution(k,w,p)) || (hash / pow(2.0,hashlen)) >= algorand_sum(0, j+1, binary_distribution(k, w, p))) {
+        j++;
     }
-    int verify() {
-        
+    
+    sortitionRet results;
+    results.hash = hash;
+    results.proof = proof;
+    results.j = j;
+    return results;
+}
+
+//TODO: pass sign(proof) as parameters or get form VRF function
+int Algorand::verify(const uint8_t *data, size_t data_len, const uint8_t *sign, size_t sign_len, const EVP_MD *hash, uint64_t threshold, int role, int w, int W) {
+    vrfStruct vrfRet = VRF(this.m_privatekey, this->seed, role);
+    uint8_t hashString = vrfRet.hash;
+    uint8_t proof = vrfRet.proof;
+    int hashlen = hashString.length();
+    if (!vrf_rsa_verify(data, data_len, sign, sign_len,
+                       this->m_publickey, hash)) {
+        return 0;
     }
-};
+    float p = threshold / W;
+    int j = 0;
+    
+    //TODO: shorter hash and hashlen, need discussion on Sunday
+    while( (hashString / pow(2.0,hashlen)) < algorand_sum(0, j, binary_distribution(k,w,p)) || (hash / pow(2.0,hashlen)) >= algorand_sum(0, j+1, binary_distribution(k, w, p))) {
+        j++;
+    }
+    return j;
+}
+
+// 1 means success, 0 means failure
+int Algorand::countVotes(float T, uint64_t threshold, dataPackage dp) {
+    RSA* pk = dp.pk;
+    string value = dp.value;
+    int votes = dp.votes;
+    unordered_map<RSA*,int>::const_iterator gotPk = this->countvotes_pk.find(pk);
+    if(gotPk != countvotes_pk.end()) continue;
+//    pair<RSA*,int> newPk (pk, 1);
+//    countvotes_pk.insert(newPk);
+    countvotes_pk[pk] = 1;
+    unordered_map<string,int>::const_iterator gotValue = this->counts.find(value);
+    if(gotValue != counts.end()) {
+        counts[value] += votes;
+    } else {
+        pair<string,int> newValue (value, votes);
+        counts[value] = votes;
+        // counts.insert(newValue);
+    }
+    if(counts[value] > T * threshold)
+        return 1;
+    else
+        return 0;
+}
+
+//BA() {
+//    
+//}
