@@ -26,8 +26,30 @@ char* key_to_string(RSA* pri_key) {
 	BIO_read(pub, pub_key_char, pub_len);
 	// append stop sign
 	pub_key_char[pub_len] = '\0';
-
+	BIO_free(pub);
 	return pub_key_char;
+}
+
+/*
+ * Load RSA key from a pem key string
+ */
+RSA* string_to_key(const char* key_str, bool is_public) {
+	RSA* rsa_key;
+	BIO* key_bio;
+	key_bio = BIO_new_mem_buf(key_str, -1);
+	if (key_bio==NULL) {
+			printf( "Failed to get key BIO");
+			return NULL;
+	}
+	// printf("converting...\n");
+	if(is_public) {
+		PEM_read_bio_RSA_PUBKEY(key_bio, &rsa_key,NULL, NULL);
+	}
+	else {
+		PEM_read_bio_RSAPrivateKey(key_bio, &rsa_key,NULL, NULL);
+	}
+	BIO_free(key_bio);
+	return rsa_key;
 }
 
 /*!

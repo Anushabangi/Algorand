@@ -30,6 +30,14 @@ RSA *privkey_to_pubkey(RSA *pri_key);
  */
 char* key_to_string(RSA* pri_key);
 
+/* !
+ * Load RSA key from a pem key string
+ * \param[in]	 key_str      pem key string
+ * \param[in]  is_public    for public key or not
+ * \param[out]              RSA* key
+ */
+RSA* string_to_key(const char* key_str, bool is_public);
+
 /*!
  * Get size of Full Domain Hash result.
  */
