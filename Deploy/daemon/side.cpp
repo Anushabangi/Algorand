@@ -7,6 +7,10 @@
 #include <sys/stat.h>
 #include <errno.h>
 #include <unistd.h>
+#include <string>
+#include <iostream>
+using namespace std;
+
 #include "info.h"
 
 int main() {
@@ -36,7 +40,9 @@ int main() {
             continue;
         if(FD_ISSET(rfd, &read_fd)){
             read(rfd, str, sizeof(str));
-            printf("test:%s\n", str);
+            Student ns = decode(str);
+            printf("test:");
+            prints(ns);
         }
         if(FD_ISSET(fileno(stdin), &read_fd)) {
             fgets(str, sizeof(str), stdin);
