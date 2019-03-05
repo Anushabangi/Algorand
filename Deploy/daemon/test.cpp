@@ -16,8 +16,8 @@ using namespace std;
 
 void trigger() {
     int random = rand() % 6;
+    cout << endl << "Will sleep for " << random << endl << endl;
     sleep(random);
-
 }
 
 int main() {
@@ -38,11 +38,19 @@ int main() {
     {
         FD_ZERO(&read_fd);
         FD_SET(rfd, &read_fd);
-        FD_SET(fileno(stdin), &read_fd);
+        // FD_SET(fileno(stdin), &read_fd);
 
         net_timer.tv_sec = 5;
         net_timer.tv_usec = 0;
         memset(str, 0, sizeof(str));
+
+        trigger();
+        // fgets(str, sizeof(str), stdin);
+        Student ns = Student(rand()%10, "Student" + to_string(rand()%10), false);
+        string enns = encode(ns);
+        strcpy(str, enns.c_str());
+        len = write(wfd, str, strlen(str));
+
         i = select(rfd + 1, &read_fd, NULL, NULL, &net_timer);
         if(i <= 0)
             continue;
@@ -52,13 +60,9 @@ int main() {
             printf("side:\n");
             prints(ns);
         }
-        if(FD_ISSET(fileno(stdin), &read_fd)) {
-            fgets(str, sizeof(str), stdin);
-            Student ns = Student(rand()%10, str, false);
-            string enns = encode(ns);
-            strcpy(str, enns.c_str());
-            len = write(wfd, str, strlen(str));
-        }
+        // if(FD_ISSET(fileno(stdin), &read_fd)) {
+
+        // }
         // close(rfd);
         // close(wfd);
     }

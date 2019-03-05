@@ -30,7 +30,7 @@ int main() {
     while(1) {
         FD_ZERO(&read_fd);
         FD_SET(rfd, &read_fd);
-        FD_SET(fileno(stdin), &read_fd);
+        // FD_SET(fileno(stdin), &read_fd);
 
         net_timer.tv_sec = 5;
         net_timer.tv_usec = 0;
