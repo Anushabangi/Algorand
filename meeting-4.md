@@ -41,4 +41,6 @@ Doing: debug binary distribution functions
 
 3. How to ensure the probability of success
 
+	increase the threshold, add more money
+
 
