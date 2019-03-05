@@ -32,4 +32,5 @@ void prints(Student input) {
     } else {
         cout << "The student is not verified." << endl;
     }
+    cout << endl;
 }
