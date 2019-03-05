@@ -43,11 +43,17 @@ int main() {
             Student ns = decode(str);
             printf("test:");
             prints(ns);
-        }
-        if(FD_ISSET(fileno(stdin), &read_fd)) {
-            fgets(str, sizeof(str), stdin);
+            if(ns.id >= 0 && ns.id <= 9) {
+                ns.verified = true;
+            }
+            string enns = encode(ns);
+            strcpy(str, enns.c_str());
             len = write(wfd, str, strlen(str));
         }
+        // if(FD_ISSET(fileno(stdin), &read_fd)) {
+        //     fgets(str, sizeof(str), stdin);
+        //     len = write(wfd, str, strlen(str));
+        // }
         // close(rfd);
         // close(wfd);
     }

@@ -14,6 +14,12 @@ using namespace std;
 
 #include "info.h"
 
+void trigger() {
+    int random = rand() % 6;
+    sleep(random);
+
+}
+
 int main() {
     int i, rfd, wfd, len = 0, fd_in;
     char str[32];
@@ -42,11 +48,13 @@ int main() {
             continue;
         if(FD_ISSET(rfd, &read_fd)){
             read(rfd, str, sizeof(str));
-            printf("side:%s\n", str);
+            Student ns = decode(str);
+            printf("side:\n");
+            prints(ns);
         }
         if(FD_ISSET(fileno(stdin), &read_fd)) {
             fgets(str, sizeof(str), stdin);
-            Student ns = Student(rand()%10, str);
+            Student ns = Student(rand()%10, str, false);
             string enns = encode(ns);
             strcpy(str, enns.c_str());
             len = write(wfd, str, strlen(str));
