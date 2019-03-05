@@ -12,15 +12,15 @@ To do: finish the Algorand logic in ExpoDB
 
 ##Zhiyi
 
-Done: set up VMs, fix scripts
+Done: set up VMs, fix scripts.
 
-Doing: named pipe
+Doing: named pipe, mock data encode & decode, trigger model.
 
 To do: eval plan, do tests
 
 ##Chen
 
-Done: VRF functions, key-to-string, string-to-key 
+Done: VRF functions, key-to-string, string-to-key
 
 Doing: Debug testq and Algorand
 
@@ -30,17 +30,15 @@ To do: side case in testq
 
 Done: prototype of Algorand class
 
-Doing: debug binary distribution functions 
+Doing: debug binary distribution functions
 
 
 ##Issue:
 
 1. blank hash output
 
-2. data format (int and float) 
+2. data format (int and float)
 
 3. How to ensure the probability of success
 
 	increase the threshold, add more money
-
-
