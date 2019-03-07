@@ -1,3 +1,3 @@
-g++ -o test test.cpp
+g++ -o main main.cpp
 g++ -o side side.cpp
 clear

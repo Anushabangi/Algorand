@@ -1,0 +1,7 @@
+./run.sh
+
+// open a new terminal
+./main
+
+// open a new terminal
+./side

@@ -9,9 +9,16 @@
 #include <unistd.h>
 #include <string>
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
 #include "info.h"
+
+void trigger() {
+    int random = rand() % 6;
+    cout << endl << "Will sleep for " << random << endl << endl;
+    sleep(random);
+}
 
 int main() {
     int i, rfd, wfd, len = 0, fd_in;
@@ -22,12 +29,13 @@ int main() {
 
     mkfifo("fifo1", S_IWUSR|S_IRUSR|S_IRGRP|S_IROTH);
     mkfifo("fifo2", S_IWUSR|S_IRUSR|S_IRGRP|S_IROTH);
-    rfd = open("fifo1", O_RDONLY);
-    wfd = open("fifo2", O_WRONLY);
+    wfd = open("fifo1", O_WRONLY);
+    rfd = open("fifo2", O_RDONLY);
     if(rfd <= 0 || wfd <= 0) return 0;
-    printf("side starts\n");
 
-    while(1) {
+    printf("main start\n");
+    while(1)
+    {
         FD_ZERO(&read_fd);
         FD_SET(rfd, &read_fd);
         // FD_SET(fileno(stdin), &read_fd);
@@ -35,24 +43,25 @@ int main() {
         net_timer.tv_sec = 5;
         net_timer.tv_usec = 0;
         memset(str, 0, sizeof(str));
+
+        trigger();
+        // fgets(str, sizeof(str), stdin);
+        Student ns = Student(rand()%10, "Student" + to_string(rand()%10), false);
+        string enns = encode(ns);
+        strcpy(str, enns.c_str());
+        len = write(wfd, str, strlen(str));
+
         i = select(rfd + 1, &read_fd, NULL, NULL, &net_timer);
         if(i <= 0)
             continue;
         if(FD_ISSET(rfd, &read_fd)){
             read(rfd, str, sizeof(str));
             Student ns = decode(str);
-            printf("test:");
+            printf("side:\n");
             prints(ns);
-            if(ns.id >= 0 && ns.id <= 9) {
-                ns.verified = true;
-            }
-            string enns = encode(ns);
-            strcpy(str, enns.c_str());
-            len = write(wfd, str, strlen(str));
         }
         // if(FD_ISSET(fileno(stdin), &read_fd)) {
-        //     fgets(str, sizeof(str), stdin);
-        //     len = write(wfd, str, strlen(str));
+
         // }
         // close(rfd);
         // close(wfd);
