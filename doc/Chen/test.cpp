@@ -71,7 +71,7 @@ int main(int argc, char *argv[]) {
 
 	// 3. sign the input, taking input -> get proof
 	size_t proof_len = get_key_len(pri_key);
-	uint8_t proof[proof_len],nproof[proof_len];
+	uint8_t proof[proof_len];
 	size_t written = vrf_rsa_sign(input, input_len, proof, proof_len, pri_key, hash);
 	if (written != proof_len) {
 		error("Error creating FDH signature.");
@@ -79,19 +79,8 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
-  printf("## %s\n", "VRF proof1");
+  printf("## %s\n", "VRF proof");
 	print_hex(proof, proof_len);
-	printf("## %s: %zu\n", "length of proof", proof_len);
-
-	written = vrf_rsa_sign(input, input_len, nproof, proof_len, pri_key, hash);
-	if (written != proof_len) {
-		error("Error creating FDH signature.");
-		RSA_free(pri_key);
-		return 1;
-	}
-
-  printf("## %s\n", "VRF proof2");
-	print_hex(nproof, proof_len);
 	printf("## %s: %zu\n", "length of proof", proof_len);
 
 	// 4. compute hash output based on proof

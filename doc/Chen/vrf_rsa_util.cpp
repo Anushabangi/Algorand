@@ -41,7 +41,6 @@ RSA* string_to_key(const char* key_str, bool is_public) {
 			printf( "Failed to get key BIO");
 			return NULL;
 	}
-
 	// printf("converting...\n");
 	if(is_public) {
 		PEM_read_bio_RSA_PUBKEY(key_bio, &rsa_key,NULL, NULL);
