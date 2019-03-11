@@ -34,17 +34,16 @@ char* key_to_string(RSA* pri_key) {
  * Load RSA key from a pem key string
  */
 RSA* string_to_key(const char* key_str, bool is_public) {
-	RSA* rsa_key;
+	RSA* rsa_key = RSA_new();
 	BIO* key_bio;
 	key_bio = BIO_new_mem_buf(key_str, -1);
 	if (key_bio==NULL) {
 			printf( "Failed to get key BIO");
 			return NULL;
 	}
-
 	// printf("converting...\n");
 	if(is_public) {
-		PEM_read_bio_RSA_PUBKEY(key_bio, &rsa_key,NULL, NULL);
+		PEM_read_bio_RSAPublicKey(key_bio, &rsa_key,NULL, NULL);
 	}
 	else {
 		PEM_read_bio_RSAPrivateKey(key_bio, &rsa_key,NULL, NULL);
@@ -100,7 +99,7 @@ size_t get_key_len(RSA *key) {
 size_t vrf_rsa_sign(const uint8_t *data, size_t data_len,
 			uint8_t *sign, size_t sign_len,
 			RSA *key, const EVP_MD *hash) {
-	if (!data || !key || !sign || !hash || sign_len < RSA_size(key)) {
+	if (!data || !key || !sign || !hash || sign_len < (size_t) RSA_size(key)) {
 		return 0;
 	}
 
@@ -174,7 +173,7 @@ size_t proof_to_output(const uint8_t* proof, size_t proof_len,
 bool vrf_rsa_verify(const uint8_t *data, size_t data_len,
 			const uint8_t *sign, size_t sign_len,
 			RSA *key, const EVP_MD *hash) {
-	if (!data || !key || !sign || !hash || sign_len != RSA_size(key)) {
+	if (!data || !key || !sign || !hash || sign_len != (size_t) RSA_size(key)) {
 		return false;
 	}
 
@@ -188,7 +187,7 @@ bool vrf_rsa_verify(const uint8_t *data, size_t data_len,
 	// reverse RSA signature
 	uint8_t decrypted[sign_len];
 	int r = RSA_public_decrypt(sign_len, sign, decrypted, key, RSA_NO_PADDING);
-	if (r < 0 || r != sign_len) {
+	if (r < 0 || (size_t) r != sign_len) {
 		return false;
 	}
 
