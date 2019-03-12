@@ -188,6 +188,9 @@ void Algorand::reset() {
 
 void Algorand::execute(int seed) {
     //TODO
+    int amount = (seed % 100 + 1) * 2;
+    this->m_wallet = (uint64_t)amout;
+    this->wallet[this->publickeys[this.m_id]] = amout;
     return;
 }
 
