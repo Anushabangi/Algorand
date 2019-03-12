@@ -36,6 +36,37 @@
 
 #if ALGORAND == true
 //resources for algorand
+
+#include <openssl/err.h>
+
+static MUTEX_TYPE *mutex_buf = (MUTEX_TYPE *) malloc(CRYPTO_num_locks() * sizeof(MUTEX_TYPE));
+
+void handle_error(const char *file, int lineno, const char *msg)
+{
+  fprintf(stderr, "** %s:%d %s\n", file, lineno, msg);
+  ERR_print_errors_fp(stderr);
+  /* exit(-1); */ 
+}
+
+unsigned long WorkerThread::id_function(void)
+{
+  return ((unsigned long)THREAD_ID);
+}
+
+//static void cleanup(void)
+//{
+//  EVP_cleanup();
+//  CRYPTO_cleanup_all_ex_data();
+//}
+
+void WorkerThread::locking_function(int mode, int n, const char *file, int line)
+{
+  if(mode & CRYPTO_LOCK)
+    MUTEX_LOCK(mutex_buf[n]);
+  else
+    MUTEX_UNLOCK(mutex_buf[n]);
+}
+
 #endif
 
 void WorkerThread::send_key() {
@@ -78,6 +109,16 @@ void WorkerThread::setup() {
     send_key();
   }
   _thd_txn_id = 0;
+
+#if ALGORAND == true
+  if(!mutex_buf)
+    return;
+  for(int i = 0;  i < CRYPTO_num_locks();  i++)
+    MUTEX_SETUP(mutex_buf[i]);
+  CRYPTO_set_id_callback(id_function);
+  CRYPTO_set_locking_callback(locking_function);
+#endif
+
 }
 
 void WorkerThread::process(Message * msg) {
@@ -520,6 +561,19 @@ RC WorkerThread::run() {
 	printf("AVRSA:  %ld\n",rsacount);
 	fflush(stdout);
   }
+
+#if ALGORAND == true
+  if(!mutex_buf)
+    return FINISH;
+  CRYPTO_set_id_callback(NULL);
+  CRYPTO_set_locking_callback(NULL);
+  for(int i = 0;  i < CRYPTO_num_locks();  i++)
+    MUTEX_CLEANUP(mutex_buf[i]);
+  //free(mutex_buf);
+  mutex_buf = NULL;
+  ERR_remove_state(0);
+#endif
+
   return FINISH;
 }
 
