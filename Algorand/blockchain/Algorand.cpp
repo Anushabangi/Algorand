@@ -37,7 +37,7 @@ int Algorand::getkey(string pk, int node_id) {
     return 0;
 }
 
-
+// Initialization
 string Algorand::init(int node_id) {
     this->user_count = 4;
     this->m_wallet = 100;
@@ -55,6 +55,7 @@ string Algorand::init(int node_id) {
     return key_to_string(this->m_publickey);
 }
 
+//sortition algorithm, return value will be the number of times the user was chosen.
 dataPackage Algorand::sortition(int threshold, int role, int w, int W, string value) {
     
     this->m_block = value;
@@ -117,6 +118,7 @@ dataPackage Algorand::sortition(int threshold, int role, int w, int W, string va
     return results;
 }
 
+//verify sortition proof, return value will be the number of selected sub-users.
 int Algorand::verify(dataPackage *dp, int threshold, int role, int W) {
     
     size_t proof_len = dp->proof.size();
@@ -152,7 +154,7 @@ int Algorand::verify(dataPackage *dp, int threshold, int role, int W) {
     return j;
 }
 
-// 1 means success, 0 means failure
+// count votes algorithm, return value: 1 means success, 0 means failure
 int Algorand::countVotes(double T, int threshold, dataPackage *dp) {
     string pk = dp->pk;
     string value = dp->value; // the hash of the proposed block
@@ -186,6 +188,7 @@ void Algorand::reset() {
     return;
 }
 
+// update the wallet number based on the given seed.
 void Algorand::execute(int seed) {
     //TODO
     int amount = (seed % 100 + 1) * 2;
