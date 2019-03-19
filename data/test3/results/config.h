@@ -1,0 +1,247 @@
+#ifndef _CONFIG_H_ 
+#define _CONFIG_H_ 
+
+#define ALGORAND false
+#define NODE_CNT 4 
+#define THREAD_CNT 5 
+#define REM_THREAD_CNT 1 
+#define SEND_THREAD_CNT 2 
+#define CORE_CNT 5 
+#define PART_CNT 1 
+#define CLIENT_NODE_CNT 1 
+#define CLIENT_THREAD_CNT 1 
+#define CLIENT_REM_THREAD_CNT 1 
+#define CLIENT_SEND_THREAD_CNT 1 
+#define CLIENT_RUNTIME false 
+#define LOAD_METHOD LOAD_MAX 
+#define LOAD_PER_SERVER 1 
+#define REPLICA_CNT 0 
+#define REPL_TYPE AP 
+#define VIRTUAL_PART_CNT PART_CNT 
+#define PAGE_SIZE 4096 
+#define CL_SIZE 64 
+#define CPU_FREQ 2.6 
+#define HW_MIGRATE false 
+#define WARMUP 0 
+#define WORKLOAD YCSB 
+#define PRT_LAT_DISTR false 
+#define STATS_ENABLE true 
+#define TIME_ENABLE true 
+#define FIN_BY_TIME true 
+#define MAX_TXN_IN_FLIGHT 100 
+#define SERVER_GENERATE_QUERIES false 
+#define MEM_ALLIGN 8 
+#define THREAD_ALLOC false 
+#define THREAD_ARENA_SIZE (1UL << 22) 
+#define MEM_PAD true 
+#define PART_ALLOC false 
+#define MEM_SIZE (1UL << 30) 
+#define NO_FREE false 
+#define TPORT_TYPE TCP 
+#define TPORT_PORT 17000 
+#define SET_AFFINITY false 
+#define MAX_TPORT_NAME 128 
+#define MSG_SIZE 128 
+#define HEADER_SIZE sizeof(uint32_t)*2 
+#define MSG_TIMEOUT 5000000000UL  // in ns 
+#define NETWORK_TEST false 
+#define NETWORK_DELAY_TEST false 
+#define NETWORK_DELAY 0UL 
+#define MAX_QUEUE_LEN NODE_CNT * 2 
+#define PRIORITY_WORK_QUEUE false 
+#define PRIORITY PRIORITY_ACTIVE 
+#define MSG_SIZE_MAX 1048576 
+#define MSG_TIME_LIMIT 0 
+#define CC_ALG NO_WAIT 
+#define ISOLATION_LEVEL SERIALIZABLE 
+#define YCSB_ABORT_MODE false 
+#define KEY_ORDER false 
+#define ROLL_BACK true 
+#define CENTRAL_MAN false 
+#define BUCKET_CNT 31 
+#define ABORT_PENALTY 10 * 1000000UL 
+#define ABORT_PENALTY_MAX 5 * 100 * 1000000UL 
+#define BACKOFF true 
+#define ENABLE_LATCH false 
+#define CENTRAL_INDEX false 
+#define CENTRAL_MANAGER false 
+#define INDEX_STRUCT IDX_HASH 
+#define BTREE_ORDER 16 
+#define TS_TWR false 
+#define TS_ALLOC TS_CLOCK 
+#define TS_BATCH_ALLOC false
+#define TS_BATCH_NUM 1
+#define HIS_RECYCLE_LEN 10 
+#define MAX_PRE_REQ         MAX_TXN_IN_FLIGHT * NODE_CNT 
+#define MAX_READ_REQ        MAX_TXN_IN_FLIGHT * NODE_CNT 
+#define MIN_TS_INTVL        10 * 1000000UL 
+#define MAX_WRITE_SET       10 
+#define PER_ROW_VALID       false 
+#define TXN_QUEUE_SIZE_LIMIT    THREAD_CNT 
+#define SEQ_THREAD_CNT 4 
+#define LOG_COMMAND         false 
+#define LOG_REDO          false 
+#define LOGGING false 
+#define LOG_BUF_MAX 10 
+#define LOG_BUF_TIMEOUT 10 * 1000000UL 
+#define MAX_ROW_PER_TXN       64 
+#define QUERY_INTVL         1UL 
+#define MAX_TXN_PER_PART 4000 
+#define FIRST_PART_LOCAL      true 
+#define MAX_TUPLE_SIZE        1024 
+#define GEN_BY_MPR false 
+#define SKEW_METHOD ZIPF 
+#define DATA_PERC 100 
+#define ACCESS_PERC 0.03 
+#define INIT_PARALLELISM 8 
+#define SYNTH_TABLE_SIZE 524288
+
+#define ZIPF_THETA 0.5 
+#define WRITE_PERC 0.9 
+#define TXN_WRITE_PERC 0.5 
+#define TUP_WRITE_PERC 0.5 
+#define SCAN_PERC           0 
+#define SCAN_LEN          20 
+#define PART_PER_TXN PART_CNT 
+#define PERC_MULTI_PART MPR 
+#define REQ_PER_QUERY 1 
+#define FIELD_PER_TUPLE       10 
+#define CREATE_TXN_FILE false 
+#define SINGLE_THREAD_WL_GEN true 
+#define STRICT_PPT 1 
+#define TPCC_SMALL          false 
+#define MAX_ITEMS_SMALL 10000 
+#define CUST_PER_DIST_SMALL 2000 
+#define MAX_ITEMS_NORM 100000 
+#define CUST_PER_DIST_NORM 3000 
+#define MAX_ITEMS_PER_TXN 15 
+#define TPCC_ACCESS_ALL       false  
+#define WH_UPDATE         true 
+#define NUM_WH PART_CNT 
+#define MPR 1.0 
+#define MPIR 0.01 
+#define MPR_NEWORDER      20 
+enum TPCCTable { TPCC_WAREHOUSE,  TPCC_DISTRICT, TPCC_CUSTOMER, TPCC_HISTORY, TPCC_NEWORDER, TPCC_ORDER, TPCC_ORDERLINE, TPCC_ITEM, TPCC_STOCK }; 
+enum TPCCTxnType { TPCC_ALL,  TPCC_PAYMENT,  TPCC_NEW_ORDER, TPCC_ORDER_STATUS,  TPCC_DELIVERY,  TPCC_STOCK_LEVEL }; 
+extern TPCCTxnType          g_tpcc_txn_type; 
+#define PERC_PAYMENT 0.0 
+#define FIRSTNAME_MINLEN      8 
+#define FIRSTNAME_LEN         16 
+#define LASTNAME_LEN        16 
+#define DIST_PER_WH       10 
+#define MAX_PPS_PARTS_PER 10 
+#define MAX_PPS_PART_KEY 10000 
+#define MAX_PPS_PRODUCT_KEY 1000 
+#define MAX_PPS_SUPPLIER_KEY 1000 
+#define MAX_PPS_PART_PER_PRODUCT 10 
+#define MAX_PPS_PART_PER_SUPPLIER 10 
+#define MAX_PPS_PART_PER_PRODUCT_KEY 10 
+#define MAX_PPS_PART_PER_SUPPLIER_KEY 10  
+#define PERC_PPS_GETPART 0.00 
+#define PERC_PPS_GETSUPPLIER 0.00  
+#define PERC_PPS_GETPRODUCT 0.0 
+#define PERC_PPS_GETPARTBYSUPPLIER 0.0 
+#define PERC_PPS_GETPARTBYPRODUCT 0.2 
+#define PERC_PPS_ORDERPRODUCT 0.6 
+#define PERC_PPS_UPDATEPRODUCTPART 0.2 
+#define PERC_PPS_UPDATEPART 0.0 
+enum PPSTxnType { PPS_ALL = 0,  PPS_GETPART,  PPS_GETSUPPLIER,  PPS_GETPRODUCT,  PPS_GETPARTBYSUPPLIER,  PPS_GETPARTBYPRODUCT, PPS_ORDERPRODUCT, PPS_UPDATEPRODUCTPART,  PPS_UPDATEPART }; 
+#define WL_VERB           true 
+#define IDX_VERB          false 
+#define VERB_ALLOC          true 
+#define DEBUG_LOCK          false 
+#define DEBUG_TIMESTAMP       false 
+#define DEBUG_SYNTH         false 
+#define DEBUG_ASSERT        false 
+#define DEBUG_DISTR false 
+#define DEBUG_ALLOC false 
+#define DEBUG_RACE false 
+#define DEBUG_TIMELINE        false 
+#define DEBUG_BREAKDOWN       false 
+#define DEBUG_LATENCY       false 
+#define DEBUG_QUECC false 
+#define DEBUG_WLOAD true 
+#define MODE NORMAL_MODE 
+#define DBTYPE REPLICATED 
+#define IDX_HASH          1 
+#define IDX_BTREE         2 
+#define YCSB            1 
+#define TPCC            2 
+#define PPS             3 
+#define TEST            4 
+#define NO_WAIT           1 
+#define WAIT_DIE          2 
+#define DL_DETECT         3 
+#define TIMESTAMP         4 
+#define MVCC            5 
+#define HSTORE            6 
+#define HSTORE_SPEC           7 
+#define OCC             8 
+#define VLL             9
+
+#define CALVIN      10 
+#define MAAT      11 
+#define WDL           12 
+#define TS_MUTEX          1 
+#define TS_CAS            2 
+#define TS_HW           3 
+#define TS_CLOCK          4 
+#define NORMAL_MODE 1 
+#define NOCC_MODE 2 
+#define QRY_ONLY_MODE 3 
+#define SETUP_MODE 4 
+#define SIMPLE_MODE 5 
+#define THREEPC_MODE 6 
+#define EASYC_MODE 7 
+#define ZIPF 1 
+#define HOT 2 
+#define PRIORITY_FCFS 1 
+#define PRIORITY_ACTIVE 2 
+#define PRIORITY_HOME 3 
+#define AA1 1 
+#define AP 2 
+#define LOAD_MAX 1 
+#define LOAD_RATE 2 
+#define TCP 1 
+#define IPC 2 
+#define SERIALIZABLE 1 
+#define READ_COMMITTED 2  
+#define READ_UNCOMMITTED 3  
+#define NOLOCK 4  
+#define BILLION 1000000000UL 
+#define MILLION 1000000UL 
+#define STAT_ARR_SIZE 1024 
+#define PROG_TIMER 10 * BILLION 
+#define BATCH_TIMER 0 
+#define SEQ_BATCH_TIMER 5 * 1 * MILLION 
+#define DONE_TIMER 1 * 60 * BILLION 
+#define WARMUP_TIMER 1 * 60 * BILLION 
+#define SEED 0 
+#define SHMEM_ENV false 
+#define ENVIRONMENT_EC2 false  
+#define PARTITIONED 0 
+#define REPLICATED 1 
+#define CONSENSUS PBFT 
+#define DBFT 1 
+#define PBFT 2 
+#define ZYZZYVA false  
+#define RBFT_ON false 
+#define LOCAL_FAULT false 
+#define BATCH_THREADS 2 
+#define BATCH_SIZE 100 
+#define BATCH_ENABLE BSET 
+#define BSET 1 
+#define BUNSET 0 
+#define TXN_PER_CHKPT 600 
+#define EXECUTION_THREAD true 
+#define EXECUTE_THD_CNT 1 
+#define SIGN_THREADS false 
+#define SIGN_THD_CNT 1 
+#define USE_CRYPTO false 
+#define CLIENT_BATCH true 
+#define CLIENT_RESPONSE_BATCH true 
+#define EXE_TIMEOUT  15000000000 
+#define CEXE_TIMEOUT 35000000000 
+#define VIEW_CHANGES false 
+#define NODE_FAIL_CNT 0 
+#endif

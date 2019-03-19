@@ -1,0 +1,169 @@
+Running client...
+
+CC Alg 1
+g_done_timer 60000000000
+g_thread_cnt 5
+g_abort_penalty 10000000
+g_zipf_theta 0.500000
+g_node_id 4
+g_client_rem_thread_cnt 1
+g_client_send_thread_cnt 1
+g_max_txn_per_part 4000
+g_load_per_server 1
+g_inflight_max 100
+g_mpr 1.000000
+g_mpitem 0.010000
+g_part_per_txn 1
+g_req_per_query 1
+g_client_node_cnt 1
+g_rem_thread_cnt 1
+g_send_thread_cnt 2
+g_client_thread_cnt 1
+g_part_cnt 1
+g_node_cnt 4
+g_thread_cnt 5
+g_query_intvl 1
+g_prt_lat_distr 0
+g_part_alloc 0
+g_mem_pad 1
+g_perc_multi_part 1.000000
+g_tup_read_perc 0.500000
+g_tup_write_perc 0.500000
+g_txn_read_perc 0.500000
+g_txn_write_perc 0.500000
+g_synth_table_size 524288
+g_field_per_tuple 10
+g_data_perc 100.000000
+g_access_perc 0.030000
+g_strict_ppt 1
+g_network_delay 0
+g_total_thread_cnt 9
+g_total_client_thread_cnt 3
+g_total_node_cnt 5
+g_seq_batch_time_limit 5000000
+Node 4: servicing 1 total nodes starting with node 0
+Random seed: 5556809380771
+Initializing stats... Done
+Initializing transport manager... Tport Init 4: 11
+Reading ifconfig file: ./ifconfig.txt
+0: 172.31.44.236
+1: 172.31.32.246
+2: 172.31.33.120
+3: 172.31.32.5
+4: 172.31.42.13
+Port ID:  0, 0 -> 4 : 17020
+Sock Binding to tcp://172.31.42.13:17020 4
+Port ID:  1, 0 -> 4 : 17045
+Sock Binding to tcp://172.31.42.13:17045 4
+Port ID:  0, 4 -> 0 : 17004
+Sock Connecting to tcp://172.31.42.13;172.31.44.236:17004 4 -> 0
+Port ID:  0, 1 -> 4 : 17021
+Sock Binding to tcp://172.31.42.13:17021 4
+Port ID:  1, 1 -> 4 : 17046
+Sock Binding to tcp://172.31.42.13:17046 4
+Port ID:  0, 4 -> 1 : 17009
+Sock Connecting to tcp://172.31.42.13;172.31.32.246:17009 4 -> 1
+Port ID:  0, 2 -> 4 : 17022
+Sock Binding to tcp://172.31.42.13:17022 4
+Port ID:  1, 2 -> 4 : 17047
+Sock Binding to tcp://172.31.42.13:17047 4
+Port ID:  0, 4 -> 2 : 17014
+Sock Connecting to tcp://172.31.42.13;172.31.33.120:17014 4 -> 2
+Port ID:  0, 3 -> 4 : 17023
+Sock Binding to tcp://172.31.42.13:17023 4
+Port ID:  1, 3 -> 4 : 17048
+Sock Binding to tcp://172.31.42.13:17048 4
+Port ID:  0, 4 -> 3 : 17019
+Sock Connecting to tcp://172.31.42.13;172.31.32.5:17019 4 -> 3
+Done
+Initializing client manager... workload initialized!
+Initializing simulation... Done
+Done
+Initializing work queue... Done
+Initializing msg pool... Done
+Reading in KeysCreating keyPairDone
+Initializing message queue... Done
+Initializing client query queue... final_request = 4004
+request_cnt = 4004
+g_init_parallelism = 8
+Client: tid(7): generated query count = 504
+final_request = 1000
+request_cnt = 4004
+g_init_parallelism = 8
+Client: tid(1): generated query count = 500
+final_request = 500
+request_cnt = 4004
+g_init_parallelism = 8
+Client: tid(0): generated query count = 500
+final_request = 2000
+request_cnt = 4004
+g_init_parallelism = 8
+Client: tid(3): generated query count = 500
+final_request = 1500
+request_cnt = 4004
+g_init_parallelism = 8
+Client: tid(2): generated query count = 500
+final_request = 3500
+request_cnt = 4004
+g_init_parallelism = 8
+Client: tid(6): generated query count = 500
+final_request = 2500
+request_cnt = 4004
+g_init_parallelism = 8
+Client: tid(4): generated query count = 500
+final_request = 3000
+request_cnt = 4004
+g_init_parallelism = 8
+Client: tid(5): generated query count = 500
+Done
+Initialization Time = 414302587
+Setup 4:0
+Setup 4:1
+Setup 4:2
+Send INIT_DONE to 0
+Received INIT_DONE from node 2
+Send INIT_DONE to 1
+Send INIT_DONE to 2
+Send INIT_DONE to 3
+Running 4:0
+Received INIT_DONE from node 3
+Received INIT_DONE from node 0
+Received INIT_DONE from node 1
+Running 4:1
+Running 4:2
+Starttime set to 5557617269446
+Running ClientThread 0
+Running InputThread 1
+Running OutputThread 2
+[prog] total_runtime=0.000000,tput=0.000000,txn_cnt=0,txn_sent_cnt=0,txn_run_time=0.000000,txn_run_avg_time=0.000000,cl_send_intv=0.000000,msg_queue_delay_time=0.000000,msg_queue_cnt=0,msg_queue_enq_cnt=0,msg_queue_delay_time_avg=0.000000,msg_send_time=0.000000,msg_send_time_avg=0.000000,msg_recv_time=0.000000,msg_recv_time_avg=0.000000,msg_recv_idle_time=0.000000,msg_batch_cnt=0,msg_batch_size_msgs=0,msg_batch_size_msgs_avg=0.000000,msg_batch_size_bytes=0,msg_batch_size_bytes_avg=0.000000,msg_batch_size_bytes_to_server=0,msg_batch_size_bytes_to_client=0,msg_send_cnt=0,msg_recv_cnt=0,msg_unpack_time=0.000000,msg_unpack_time_avg=0.000000,mbuf_send_intv_time=0.000000,mbuf_send_intv_time_avg=0.000000,msg_copy_output_time=0.000000,virt_mem_usage=372756,phys_mem_usage=52932,cpu_ttl=0.000069
+tif_node0=100, 
+[prog] total_runtime=0.000000,tput=0.000000,txn_cnt=0,txn_sent_cnt=0,txn_run_time=0.000000,txn_run_avg_time=0.000000,cl_send_intv=0.000000,msg_queue_delay_time=0.000000,msg_queue_cnt=0,msg_queue_enq_cnt=0,msg_queue_delay_time_avg=0.000000,msg_send_time=0.000000,msg_send_time_avg=0.000000,msg_recv_time=0.000000,msg_recv_time_avg=0.000000,msg_recv_idle_time=0.000000,msg_batch_cnt=0,msg_batch_size_msgs=0,msg_batch_size_msgs_avg=0.000000,msg_batch_size_bytes=0,msg_batch_size_bytes_avg=0.000000,msg_batch_size_bytes_to_server=0,msg_batch_size_bytes_to_client=0,msg_send_cnt=0,msg_recv_cnt=0,msg_unpack_time=0.000000,msg_unpack_time_avg=0.000000,mbuf_send_intv_time=0.000000,mbuf_send_intv_time_avg=0.000000,msg_copy_output_time=0.000000,virt_mem_usage=386580,phys_mem_usage=64508,cpu_ttl=100.088496
+tif_node0=100, 
+[prog] total_runtime=0.000000,tput=0.000000,txn_cnt=0,txn_sent_cnt=0,txn_run_time=0.000000,txn_run_avg_time=0.000000,cl_send_intv=0.000000,msg_queue_delay_time=0.000000,msg_queue_cnt=0,msg_queue_enq_cnt=0,msg_queue_delay_time_avg=0.000000,msg_send_time=0.000000,msg_send_time_avg=0.000000,msg_recv_time=0.000000,msg_recv_time_avg=0.000000,msg_recv_idle_time=0.000000,msg_batch_cnt=0,msg_batch_size_msgs=0,msg_batch_size_msgs_avg=0.000000,msg_batch_size_bytes=0,msg_batch_size_bytes_avg=0.000000,msg_batch_size_bytes_to_server=0,msg_batch_size_bytes_to_client=0,msg_send_cnt=0,msg_recv_cnt=0,msg_unpack_time=0.000000,msg_unpack_time_avg=0.000000,mbuf_send_intv_time=0.000000,mbuf_send_intv_time_avg=0.000000,msg_copy_output_time=0.000000,virt_mem_usage=408084,phys_mem_usage=84976,cpu_ttl=100.000000
+tif_node0=100, 
+[prog] total_runtime=0.000000,tput=0.000000,txn_cnt=0,txn_sent_cnt=0,txn_run_time=0.000000,txn_run_avg_time=0.000000,cl_send_intv=0.000000,msg_queue_delay_time=0.000000,msg_queue_cnt=0,msg_queue_enq_cnt=0,msg_queue_delay_time_avg=0.000000,msg_send_time=0.000000,msg_send_time_avg=0.000000,msg_recv_time=0.000000,msg_recv_time_avg=0.000000,msg_recv_idle_time=0.000000,msg_batch_cnt=0,msg_batch_size_msgs=0,msg_batch_size_msgs_avg=0.000000,msg_batch_size_bytes=0,msg_batch_size_bytes_avg=0.000000,msg_batch_size_bytes_to_server=0,msg_batch_size_bytes_to_client=0,msg_send_cnt=0,msg_recv_cnt=0,msg_unpack_time=0.000000,msg_unpack_time_avg=0.000000,mbuf_send_intv_time=0.000000,mbuf_send_intv_time_avg=0.000000,msg_copy_output_time=0.000000,virt_mem_usage=418324,phys_mem_usage=97264,cpu_ttl=100.117994
+tif_node0=100, 
+[prog] total_runtime=0.000000,tput=0.000000,txn_cnt=0,txn_sent_cnt=0,txn_run_time=0.000000,txn_run_avg_time=0.000000,cl_send_intv=0.000000,msg_queue_delay_time=0.000000,msg_queue_cnt=0,msg_queue_enq_cnt=0,msg_queue_delay_time_avg=0.000000,msg_send_time=0.000000,msg_send_time_avg=0.000000,msg_recv_time=0.000000,msg_recv_time_avg=0.000000,msg_recv_idle_time=0.000000,msg_batch_cnt=0,msg_batch_size_msgs=0,msg_batch_size_msgs_avg=0.000000,msg_batch_size_bytes=0,msg_batch_size_bytes_avg=0.000000,msg_batch_size_bytes_to_server=0,msg_batch_size_bytes_to_client=0,msg_send_cnt=0,msg_recv_cnt=0,msg_unpack_time=0.000000,msg_unpack_time_avg=0.000000,mbuf_send_intv_time=0.000000,mbuf_send_intv_time_avg=0.000000,msg_copy_output_time=0.000000,virt_mem_usage=433684,phys_mem_usage=111628,cpu_ttl=99.970528
+tif_node0=100, 
+[prog] total_runtime=60.000014,tput=0.000000,txn_cnt=0,txn_sent_cnt=0,txn_run_time=0.000000,txn_run_avg_time=0.000000,cl_send_intv=0.000000,msg_queue_delay_time=0.000000,msg_queue_cnt=0,msg_queue_enq_cnt=0,msg_queue_delay_time_avg=0.000000,msg_send_time=0.000000,msg_send_time_avg=0.000000,msg_recv_time=0.000000,msg_recv_time_avg=0.000000,msg_recv_idle_time=0.000023,msg_batch_cnt=0,msg_batch_size_msgs=0,msg_batch_size_msgs_avg=0.000000,msg_batch_size_bytes=0,msg_batch_size_bytes_avg=0.000000,msg_batch_size_bytes_to_server=0,msg_batch_size_bytes_to_client=0,msg_send_cnt=0,msg_recv_cnt=0,msg_unpack_time=0.000000,msg_unpack_time_avg=0.000000,mbuf_send_intv_time=0.000000,mbuf_send_intv_time_avg=0.000000,msg_copy_output_time=0.000000,virt_mem_usage=448020,phys_mem_usage=125976,cpu_ttl=100.117994
+tif_node0=100, 
+[prog] total_runtime=70.000014,tput=115.714263,txn_cnt=8100,txn_sent_cnt=8100,txn_run_time=995.830187,txn_run_avg_time=0.122942,cl_send_intv=9.964859,msg_queue_delay_time=0.000228,msg_queue_cnt=81,msg_queue_enq_cnt=81,msg_queue_delay_time_avg=0.000003,msg_send_time=0.003670,msg_send_time_avg=0.000045,msg_recv_time=0.009015,msg_recv_time_avg=0.000028,msg_recv_idle_time=9.754980,msg_batch_cnt=81,msg_batch_size_msgs=81,msg_batch_size_msgs_avg=1.000000,msg_batch_size_bytes=7756155,msg_batch_size_bytes_avg=95755.000000,msg_batch_size_bytes_to_server=7756155,msg_batch_size_bytes_to_client=0,msg_send_cnt=81,msg_recv_cnt=325,msg_unpack_time=0.003394,msg_unpack_time_avg=0.000010,mbuf_send_intv_time=0.000019,mbuf_send_intv_time_avg=0.000000,msg_copy_output_time=0.043476,virt_mem_usage=467988,phys_mem_usage=139524,cpu_ttl=100.000000
+tif_node0=100, 
+[prog] total_runtime=80.000014,tput=201.249965,txn_cnt=16100,txn_sent_cnt=16100,txn_run_time=2005.428071,txn_run_avg_time=0.124561,cl_send_intv=20.066986,msg_queue_delay_time=0.000442,msg_queue_cnt=161,msg_queue_enq_cnt=161,msg_queue_delay_time_avg=0.000003,msg_send_time=0.007080,msg_send_time_avg=0.000044,msg_recv_time=0.017680,msg_recv_time_avg=0.000027,msg_recv_idle_time=19.509889,msg_batch_cnt=161,msg_batch_size_msgs=161,msg_batch_size_msgs_avg=1.000000,msg_batch_size_bytes=15416555,msg_batch_size_bytes_avg=95755.000000,msg_batch_size_bytes_to_server=15416555,msg_batch_size_bytes_to_client=0,msg_send_cnt=161,msg_recv_cnt=643,msg_unpack_time=0.007144,msg_unpack_time_avg=0.000011,mbuf_send_intv_time=0.000037,mbuf_send_intv_time_avg=0.000000,msg_copy_output_time=0.086158,virt_mem_usage=488468,phys_mem_usage=156160,cpu_ttl=100.088496
+tif_node0=100, 
+[prog] total_runtime=90.000014,tput=262.222182,txn_cnt=23600,txn_sent_cnt=23600,txn_run_time=3004.960156,txn_run_avg_time=0.127329,cl_send_intv=30.068566,msg_queue_delay_time=0.000675,msg_queue_cnt=236,msg_queue_enq_cnt=236,msg_queue_delay_time_avg=0.000003,msg_send_time=0.010839,msg_send_time_avg=0.000046,msg_recv_time=0.026485,msg_recv_time_avg=0.000028,msg_recv_idle_time=29.265298,msg_batch_cnt=236,msg_batch_size_msgs=236,msg_batch_size_msgs_avg=1.000000,msg_batch_size_bytes=22598180,msg_batch_size_bytes_avg=95755.000000,msg_batch_size_bytes_to_server=22598180,msg_batch_size_bytes_to_client=0,msg_send_cnt=236,msg_recv_cnt=943,msg_unpack_time=0.010338,msg_unpack_time_avg=0.000011,mbuf_send_intv_time=0.000055,mbuf_send_intv_time_avg=0.000000,msg_copy_output_time=0.126236,virt_mem_usage=488468,phys_mem_usage=169884,cpu_ttl=100.000000
+tif_node0=100, 
+[prog] total_runtime=100.000014,tput=303.999957,txn_cnt=30400,txn_sent_cnt=30400,txn_run_time=4003.310021,txn_run_avg_time=0.131688,cl_send_intv=40.057488,msg_queue_delay_time=0.000861,msg_queue_cnt=304,msg_queue_enq_cnt=304,msg_queue_delay_time_avg=0.000003,msg_send_time=0.013922,msg_send_time_avg=0.000046,msg_recv_time=0.034140,msg_recv_time_avg=0.000028,msg_recv_idle_time=39.022291,msg_batch_cnt=304,msg_batch_size_msgs=304,msg_batch_size_msgs_avg=1.000000,msg_batch_size_bytes=29109520,msg_batch_size_bytes_avg=95755.000000,msg_batch_size_bytes_to_server=29109520,msg_batch_size_bytes_to_client=0,msg_send_cnt=304,msg_recv_cnt=1215,msg_unpack_time=0.013377,msg_unpack_time_avg=0.000011,mbuf_send_intv_time=0.000071,mbuf_send_intv_time_avg=0.000000,msg_copy_output_time=0.162606,virt_mem_usage=513044,phys_mem_usage=178312,cpu_ttl=100.058997
+tif_node0=100, 
+[prog] total_runtime=110.000014,tput=332.727230,txn_cnt=36600,txn_sent_cnt=36600,txn_run_time=4995.354308,txn_run_avg_time=0.136485,cl_send_intv=49.982717,msg_queue_delay_time=0.001048,msg_queue_cnt=366,msg_queue_enq_cnt=366,msg_queue_delay_time_avg=0.000003,msg_send_time=0.016904,msg_send_time_avg=0.000046,msg_recv_time=0.041450,msg_recv_time_avg=0.000028,msg_recv_idle_time=48.779756,msg_batch_cnt=366,msg_batch_size_msgs=366,msg_batch_size_msgs_avg=1.000000,msg_batch_size_bytes=35046330,msg_batch_size_bytes_avg=95755.000000,msg_batch_size_bytes_to_server=35046330,msg_batch_size_bytes_to_client=0,msg_send_cnt=366,msg_recv_cnt=1464,msg_unpack_time=0.016290,msg_unpack_time_avg=0.000011,mbuf_send_intv_time=0.000085,mbuf_send_intv_time_avg=0.000000,msg_copy_output_time=0.195565,virt_mem_usage=517140,phys_mem_usage=189608,cpu_ttl=100.000000
+tif_node0=100, 
+FINISH 4:0
+FINISH 4:0
+FINISH 4:0
+FINISH 4:0
+FINISH 4:2
+AVG: 0.124564
+TXNCOMP: 96200
+FINISH 4:1
+CLIENT PASS! SimTime = 120393877273
+[summary] total_runtime=60.000000,tput=718.333332,txn_cnt=43100,txn_sent_cnt=43100,txn_run_time=5999.783304,txn_run_avg_time=0.139206,cl_send_intv=60.032087,msg_queue_delay_time=0.001232,msg_queue_cnt=431,msg_queue_enq_cnt=431,msg_queue_delay_time_avg=0.000003,msg_send_time=0.019878,msg_send_time_avg=0.000046,msg_recv_time=0.048858,msg_recv_time_avg=0.000028,msg_recv_idle_time=58.535100,msg_batch_cnt=431,msg_batch_size_msgs=431,msg_batch_size_msgs_avg=1.000000,msg_batch_size_bytes=41270405,msg_batch_size_bytes_avg=95755.000000,msg_batch_size_bytes_to_server=41270405,msg_batch_size_bytes_to_client=0,msg_send_cnt=431,msg_recv_cnt=1724,msg_unpack_time=0.019029,msg_unpack_time_avg=0.000011,mbuf_send_intv_time=0.000100,mbuf_send_intv_time_avg=0.000000,msg_copy_output_time=0.230287,ccl0=0.086520,ccl1=0.089948,ccl10=0.108897,ccl25=0.120571,ccl50=0.137965,ccl75=0.155637,ccl90=0.171219,ccl95=0.181826,ccl96=0.184575,ccl97=0.191234,ccl98=0.194512,ccl99=0.205050,ccl100=0.222354,virt_mem_usage=521236,phys_mem_usage=198216,cpu_ttl=99.970528
