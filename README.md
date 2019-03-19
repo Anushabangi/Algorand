@@ -12,10 +12,10 @@ Algorand protocol on ExpoDB
     - system
         - global.h, global.cpp
         - main.cpp
-	- txn.h, txn.cpp
-	- worker_thread.h, worker_thread.cpp
+        - txn.h, txn.cpp
+        - worker_thread.h, worker_thread.cpp
     - transport
-	- message.h, message.cpp
+        - message.h, message.cpp
     - config.h
     - dev_run.sh
     - runL.sh
